@@ -23,15 +23,27 @@ public class Find {
 			System.out.println(earth.listof(client, distance).size()+" element found");
 		else
 			System.out.println(i+" elements found");*/
+		
 		for (Restaurant r: earth.listof(client, distance)) {
 			if (keyword==null) {
-				System.out.print(r); }
+				System.out.println(r); }
 			else {
-				if (r.category((ArrayList<String>) r.categories.stream().map(String::toLowerCase).collect(Collectors.toList())).contains(keyword.toLowerCase()))
-					System.out.println(r); 
+				for (String key: Lowercase(r.categories)) {
+					if (key.contains(keyword)) {
+						System.out.println(r);
+						break;
+					}
+				}
 		}
 			}
 		
+	}
+	public static ArrayList<String> Lowercase(ArrayList<String> categories) {
+		ArrayList<String> newcat=new ArrayList<String>();
+		for (String key: categories) {
+			newcat.add(key.toLowerCase());
+		}
+		return newcat;
 	}
 	
 
